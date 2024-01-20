@@ -1,0 +1,27 @@
+p{
+    margin-left:22px;
+    font-size: 20px;
+    margin-top:10px;
+}
+.form-inline{
+   
+   
+    align-items: center;
+}
+.disabled-button {
+    background-color:#3f51b5;
+    color:white; 
+   
+}
+.flex-container{
+     display: flex;
+}
+.mat-mdc-raised-button[disabled][disabled] {
+    --mdc-protected-button-disabled-container-color:#3f51b5;
+    --mdc-protected-button-disabled-label-text-color: white;
+    
+}
+mat-form-field{
+    margin-left:34px;
+    margin-right:5px
+}

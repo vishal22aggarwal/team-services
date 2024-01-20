@@ -1,0 +1,29 @@
+.flex-container {
+    display: flex;
+}
+mat-header-row {
+    min-height: 30px;
+}
+.mat-mdc-table mat-row:hover {
+    background-color:#f2f2f2;
+}
+
+::ng-deep .mat-sort-header-content {
+    font-weight: bold;
+}
+.row{
+    overflow: hidden;
+}
+.header-list{
+    background-color: #efefef
+}
+.add-employee{
+    font-size: 15px;
+}
+.upload-employee{
+    border-radius: 100%; font-size: 15px
+}
+.download-employee{
+    border-radius: 100%;
+     font-size: 15px
+}

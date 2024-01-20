@@ -1,0 +1,21 @@
+.disabled-button {
+    background-color: #3f51b5;
+    color: white;
+}
+.mat-mdc-raised-button[disabled][disabled] {
+    --mdc-protected-button-disabled-container-color: #3f51b5;
+    --mdc-protected-button-disabled-label-text-color: white;
+}
+
+.mat-input-element[readonly] {
+    user-select: none;
+}
+.flex-container{
+    display: flex;
+}
+mat-form-field{
+    margin-left: 34px;
+     margin-right: 5px
+}
+
+  

@@ -1,0 +1,125 @@
+<div class="container-fluid" style="display: block">
+    <div class="row m-3">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #efefef">
+                    <div class="flex-container">
+                        <div class="me-2 ms-2 mt-2 text-black"></div>
+
+                        <input
+                            matInput
+                            placeholder="search"
+                            autocomplete="off"
+                            (keyup)="applyFilter($event)"
+                            class="form-control"
+                        />
+
+                        <div class="col-lg-10 text-end me-2 mt-1">
+                            <button
+                                *ngIf="role == 'admin' || role == 'manager'"
+                                (click)="openButton()"
+                                class="border-0 add-training bg-primary text-white rounded-5"
+                                matTooltip="Add Training"
+                            >
+                                <i class="fa-sharp fa-solid fa-plus"></i>
+                            </button>
+                            <button
+                                class="border-0 download-training ms-1 bg-success text-white"
+                                (click)="exportEmployeeData()"
+                                matTooltip="Download Training List"
+                            >
+                                <i
+                                    class="fa fa-download"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="example-container mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort>
+                            <!-- ID Column -->
+
+                            <ng-container
+                                *ngFor="let column of displayedColumns"
+                                matColumnDef="{{ column }}"
+                            >
+                                <mat-header-cell
+                                    *matHeaderCellDef
+                                    mat-sort-header
+                                    >{{ column }}</mat-header-cell
+                                >
+                                <mat-cell *matCellDef="let data; let i = index">
+                                    <ng-container *ngIf="column === 'Actions'">
+                                        <!-- Display the Font Awesome icon -->
+                                        <button
+                                            class="btn border-0"
+                                            [disabled]="
+                                                !isEditAllowed(data.Name)
+                                            "
+                                            (click)="editTraining(data)"
+                                            matTooltip="Edit training"
+                                        >
+                                            <i
+                                                class="fa fa-pencil fa-sm text-primary"
+                                                aria-hidden="true"
+                                            ></i>
+                                        </button>
+                                        <a
+                                            class="btn"
+                                            matTooltip="Training"
+                                            (click)="
+                                                copyLink(data.Reference, i)
+                                            "
+                                        >
+                                            <i
+                                                class="text-success fa-solid fa-link"
+                                            ></i>
+                                        </a>
+                                        <span
+                                            *ngIf="clickRowNo == i"
+                                            id="copied-message" class="ms-4 ps-2 pe-2"
+                                            style="border: 1px solid;background-color:white;border-radius:20px" 
+                                        >
+                                            copied!
+                                        </span>
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf="
+                                            column === 'PlannedDate' ||
+                                                column === 'StartDate' ||
+                                                column === 'EndDate';
+                                            else others
+                                        "
+                                        >{{
+                                            data[column] | date: "dd/MM/yyyy"
+                                        }}</ng-container
+                                    >
+                                    <ng-template #others>
+                                        <ng-container>{{
+                                            data[column]
+                                        }}</ng-container>
+                                    </ng-template>
+                                </mat-cell>
+                            </ng-container>
+                            <!-- Header row -->
+
+                            <mat-header-row
+                                *matHeaderRowDef="displayedColumns"
+                            ></mat-header-row>
+                            <mat-row
+                                *matRowDef="let row; columns: displayedColumns"
+                            >
+                            </mat-row>
+                        </mat-table>
+
+                        <mat-paginator
+                            [pageSizeOptions]="[5, 10, 25, 100]"
+                        ></mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+section{
+    overflow: hidden;
+}
+.upload{
+    margin-left:140px;
+    margin-top:7px
+}
+.cancel{
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+}

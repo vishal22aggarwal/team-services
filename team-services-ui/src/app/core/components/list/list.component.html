@@ -1,0 +1,113 @@
+<div class="container-fluid" style="display: block">
+    <div class="row m-3">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header header-list">
+                    <div class="flex-container">
+                        <div class="me-2 ms-4 mt-2 text-black">
+                            {{ listTitle }}
+                        </div>
+
+                        <input
+                            matInput
+                            placeholder="search"
+                            autocomplete="off"
+                            (keyup)="applyFilter($event)"
+                            class="form-control"
+                        />
+
+                        <div class="col-lg-9 text-end me-3 mt-1">
+                            <button
+                                *ngIf="role == 'admin'"
+                                (click)="openButton()"
+                                class="border-0 add-employee bg-primary text-white rounded-5"
+                                matTooltip="Add Employee"
+                            >
+                                <i class="fa-sharp fa-solid fa-plus"></i>
+                            </button>
+                            <button
+                                *ngIf="role == 'admin'"
+                                class="border-0 upload-employee bg-danger ms-1 text-white"
+                                (click)="openDialog()"
+                                multiple="false"
+                                matTooltip="Upload Employee List"
+                            >
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                            </button>
+                            <button
+                                class="border-0 download-employee ms-1 me-1 bg-success text-white"
+                                (click)="exportEmployeeData()"
+                                matTooltip="Download Employee List"
+                            >
+                                <i
+                                    class="fa fa-download"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <mat-table #table matSort [dataSource]="dataSource">
+                        <ng-container *ngFor="let colName of displayedColumns">
+                            <ng-container [matColumnDef]="colName">
+                                <mat-header-cell
+                                    mat-sort-header
+                                    *matHeaderCellDef
+                                >
+                                    {{
+                                        colName === "Icons"
+                                            ? "Actions"
+                                            : colName
+                                    }}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <ng-container
+                                        *ngIf="
+                                            colName === 'Icons';
+                                            else dataCell
+                                        "
+                                    >
+                                        <button
+                                            class="btn border-0"
+                                            (click)="editEmployee(element)"
+                                            [disabled]="
+                                                element.EmpId != EmpId &&
+                                                role != 'manager' &&
+                                                role != 'admin'
+                                            "
+                                            matTooltip="Edit Employee List"
+                                        >
+                                            <i
+                                                class="fa fa-pencil fa-sm text-primary"
+                                                aria-hidden="true"
+                                            ></i>
+                                        </button>
+                                    </ng-container>
+                                    <ng-template #dataCell>
+                                        {{ element[colName] }}
+                                    </ng-template>
+                                </mat-cell>
+                            </ng-container>
+                        </ng-container>
+
+                        <mat-header-row
+                            *matHeaderRowDef="displayedColumns"
+                        ></mat-header-row>
+                        <mat-row
+                            *matRowDef="let row; columns: displayedColumns"
+                        ></mat-row>
+                    </mat-table>
+
+                    <mat-paginator
+                        #paginator
+                        [pageSize]="5"
+                        [pageSizeOptions]="[5, 10, 20]"
+                        [showFirstLastButtons]="true"
+                    >
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

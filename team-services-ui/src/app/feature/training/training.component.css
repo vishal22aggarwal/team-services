@@ -1,0 +1,31 @@
+.flex-container {
+    display: flex;
+}
+
+.mat-mdc-table mat-row:hover {
+    background-color:#f2f2f2;
+}
+
+::ng-deep .mat-sort-header-content {
+    font-weight: bold;
+}
+.row{
+    overflow: hidden;
+}
+.btn {
+    width: 20px;
+    height: 48px;
+    padding: 12px;
+    border:0;
+}
+.add-training{
+    font-size: 15px
+}
+.download-training{
+    border-radius: 100%;
+    font-size: 15px;
+}
+.hidden {
+    display: none;
+}
+

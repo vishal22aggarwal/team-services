@@ -1,0 +1,104 @@
+<div class="login">
+    <div
+        class="col-lg-4 col-md-8 col-sm-12 m-auto mt-2 login-card p-4 shadow-lg"
+        
+    >
+        <p class="text-center mt-5 fs-1 text-">Team Services</p>
+        <div class="login-page">
+            <div class="form">
+                <div class="login">
+                    <div class="login-header text-black">
+                        <p class="fs-4 ">LOGIN</p>
+                        <p>Please enter your credentials to login.</p>
+                    </div>
+                </div>
+                <form
+                    class="login-form"
+                    [formGroup]="loginForm"
+                    (ngSubmit)="onSubmit()"
+                >
+                    <input
+                        type="text"
+                        name="Username_email"
+                        id="email"
+                        formControlName="email"
+                        value=""
+                        class="form-control mb-"
+                        placeholder="Username/Email"
+                        fdprocessedid="8wnjp4"
+                    />
+                    <div
+                        *ngIf="
+                            loginForm.get('email')?.invalid &&
+                            (loginForm.get('email')?.dirty ||
+                                loginForm.get('email')?.touched)
+                        "
+                        class="error-message"
+                    >
+                        <div
+                            class="text-danger"
+                            *ngIf="loginForm.get('email')?.hasError('required')"
+                        >
+                            Email is required.
+                        </div>
+                        <div
+                            class="text-danger"
+                            *ngIf="loginForm.get('email')?.hasError('email')"
+                        >
+                            Invalid email format.
+                        </div>
+                    </div>
+                    <input
+                        type="password"
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="form-control"
+                        placeholder="Password"
+                        fdprocessedid="eqm6sw"
+                        formControlName="password"
+                    />
+                    <div
+                        *ngIf="
+                            loginForm.get('password')?.invalid &&
+                            (loginForm.get('password')?.dirty ||
+                                loginForm.get('password')?.touched)
+                        "
+                        class="error-message text-danger"
+                    >
+                        <div
+                            *ngIf="
+                                loginForm.get('password')?.hasError('required')
+                            "
+                        >
+                            Password is required.
+                        </div>
+                        <div
+                            *ngIf="
+                                loginForm.get('password')?.hasError('minlength')
+                            "
+                        >
+                            Password must be at least 6 characters long.
+                        </div>
+                    </div>
+                    <button
+                        [disabled]="loginForm.invalid"
+                        (click)="onLogin()"
+                        type="submit"
+                        fdprocessedid="32dn7q"
+                        class="fs-5"
+                    >
+                        login
+                    </button>
+                    <div
+                        *ngIf="loginError"
+                        class="text-danger"
+                        class="error-message"
+                    >
+                        User does not exist or invalid credentials.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

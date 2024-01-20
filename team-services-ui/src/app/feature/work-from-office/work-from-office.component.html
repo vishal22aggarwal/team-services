@@ -1,0 +1,141 @@
+<div class="container-fluid">
+    <div class="row ms-1 me-1 mt-4 mb-3">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #efefef88">
+                    <div class="flex-container">
+                        <div>
+                            <form>
+                                <label for="Forecast Month" class="ms-4"
+                                    >Forecast Month</label
+                                >
+                                <input
+                                    #monthInput
+                                    type="month"
+                                    [(ngModel)]="forcastMonth"
+                                    style="width: 50%"
+                                    name="forecast"
+                                    (change)="getSelectedMonthForcast()"
+                                />
+                            </form>
+                        </div>
+                        <div>
+                            <form>
+                                <div
+                                    class="flex-container mt-2 ms-5"
+                                    *ngIf="
+                                        role !== 'admin' &&
+                                        role !== 'manager' &&
+                                        ((currentMonth == forcastMonth &&
+                                            this.attendances.length === 0) ||
+                                            currentMonth < forcastMonth)
+                                    "
+                                >
+                                    WFO Preferences
+                                    <div *ngFor="let days of daysWeek">
+                                        <input
+                                            type="checkbox"
+                                            [value]="days"
+                                            [(ngModel)]="
+                                                selectedValuesOfDays[days]
+                                            "
+                                            name="days"
+                                            class="m-2"
+                                        />
+                                        <label>{{ days }}</label>
+                                    </div>
+
+                                    <button
+                                        class="btn btn-sm btn-outline-secondary ms-4 mb-2"
+                                        (click)="onButtonClick()"
+                                    >
+                                        Apply
+                                    </button>
+                                </div>
+                                <div class="col col-stats ml-3 ml-sm-0">
+                                    <div
+                                        class="numbers"
+                                        *ngIf="
+                                            role == 'admin' || role == 'manager'
+                                        "
+                                    >
+                                      
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div
+    *ngIf="!attendances || attendances.length === 0"
+    class="text-center fs-4 card shadow ms-4 me-4"
+    style="height: 80px"
+>
+    <div class="mt-3" style="color: #777">No data available</div>
+</div>
+<div
+    class="card-body ms-4 me-4"
+    *ngIf="attendances && attendances.length > 0"
+    style="
+        border: 1px solid #999;
+        border-radius: 8px;
+        box-shadow: 0 0 8px #999;
+        padding: 2px;
+    "
+>
+    <div style="overflow-x: auto">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th rowspan="2" scope="col">Name</th>
+                    <th
+                        scope="col"
+                        *ngFor="let date of monthDates"
+                        [attr.rowspan]="getRowspan(date)"
+                    >
+                        {{ date }}
+                    </th>
+                </tr>
+                <tr>
+                    <th class="days" scope="col" *ngFor="let days of MonthDays">
+                        {{ days }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    scope="col"
+                    *ngFor="let attendance of attendances; let i = index"
+                >
+                    <td>{{ attendance.name }}</td>
+                    <td
+                        *ngFor="let val of attendance.values"
+                        (click)="onChangeForcast(val, attendance.name, i)"
+                    >
+                        <span class="{{ getClass(val) }}">
+                            {{ getValue(val) }}</span
+                        >
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div
+    style="text-align: left"
+    class="ms-5 text-primary e-4 mt-2 fst-italic"
+    *ngIf="role == 'viewer' && attendances && attendances.length > 0"
+>
+    <i class="fa-solid fa-circle-info me-2" style="color: orange"></i>
+    <span class="text-primary"
+        >Click on a cell to change forcast of current and future dates</span
+    >
+</div>
+<div *ngIf="role !== 'viewer' && attendances && attendances.length > 0">
+    <i class="fa-solid fa-circle-info me-2 ms-4 mt-2" style="color: orange"></i>
+    <span class="text-primary">Click on a cell to change forcast</span>
+</div>

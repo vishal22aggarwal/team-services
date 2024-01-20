@@ -1,0 +1,52 @@
+<section>
+    <nav class="navbar navbar-light navbar-expand justify-content-start">
+        <span><a routerLink="dashboard" > Team Service </a></span>
+        <div class="navbar-collapse collapse w-100 ms-5" id="collapsingNavbar2">
+            <ul class="navbar-nav mx-auto">
+                <li class="">
+                    <a
+                        class="mx-3"
+                        routerLink="dashboard"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        >Dashboard</a
+                    >
+                </li>
+                <li class="">
+                    <a
+                        class="mx-3"
+                        routerLink="team-members"
+                        routerLinkActive="active"
+                        >Team Members</a
+                    >
+                </li>
+                <li class="">
+                    <a
+                        class="mx-3"
+                        style="text-decoration: none"
+                        routerLink="work-from-office"
+                        routerLinkActive="active"
+                        >WFO/Leave</a
+                    >
+                </li>
+                <li class="">
+                    <a
+                        class="mx-3"
+                        routerLink="training"
+                        routerLinkActive="active"
+                        >Training</a
+                    >
+                </li>
+            </ul>
+            <div class="me-4">
+                <div class="text-center">{{ loggedInUser?.email }}</div>
+                <div class="text-center" style="font-size: 12px">
+                    {{ "(" + loggedInUser?.role + ")" }}
+                </div>
+            </div>
+            <a class="border-0 text-white me-4" (click)="logout()" matTooltip="Sign Out">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </nav>
+</section>

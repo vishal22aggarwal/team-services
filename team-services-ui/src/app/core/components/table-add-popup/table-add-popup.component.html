@@ -1,0 +1,68 @@
+<div class="flex-container" >
+    <div class="ms-3">
+        <p *ngIf="!this.data.id">Add Employee</p>
+        <p *ngIf="this.data.id" class="mt-3 mb-4">Edit Employee</p>
+  </div>
+  <div class="col-lg-7 mt-3 text-end" style="margin-left: 30px;">
+        <button
+           
+            class="rounded-circle border-0 bg-danger  text-white" mat-dialog-close
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+</div>
+<form [formGroup]="dynamicForm" (ngSubmit)="onSave()">
+    <mat-form-field appearance="outline" >
+        <mat-label>EmpId</mat-label>
+        <input matInput formControlName="EmpId" [readonly]="this.data.id">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="Name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Grade</mat-label>
+        <input matInput formControlName="Grade">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="margin-left:34px;margin-right:5px">
+        <mat-label>Designation</mat-label>
+        <input matInput formControlName="Designation">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Project</mat-label>
+        <input matInput formControlName="Project">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Skills</mat-label>
+        <input matInput formControlName="Skills">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="Location">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>ContactNo</mat-label>
+        <input matInput formControlName="ContactNo">
+    </mat-form-field>
+
+    <div mat-dialog-actions class="row mb-2">
+        <div class="col-lg-12 me-4 text-end">
+            <button
+                mat-raised-button
+                color="primary"
+                [ngClass]="{ 'disabled-button': dynamicForm.invalid }"
+                [disabled]="dynamicForm.invalid"
+                mat-dialog-close
+                (click)="onSave()"
+
+            >
+                Save
+            </button>
+
+            <button mat-dialog-close mat-raised-button color="accent" class="me-2">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>

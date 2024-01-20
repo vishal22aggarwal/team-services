@@ -1,0 +1,87 @@
+<div class="row m-5">
+    <div class="col-lg-3" style="width: 25%">
+        <div class="card card1 shadow">
+            <div class="card-statistic-3">
+                <div class="card-icon card-icon-large">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="card-body fs-5 mt-3">
+                    <div class="card-title text-center">Team</div>
+                    <div class="text-center fs-2 fw-bold">
+                        {{ numberOfEmployees }}
+                    </div>
+                    <div class="text-center fst-italic">Employees</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3" style="width: 25%">
+        <div class="card card2 shadow">
+            <div class="card-statistic-3">
+                <div class="card-icon card-icon-large">
+                    <i class="fa fa-briefcase"></i>
+                </div>
+                <div class="card-body fs-5 mt-3">
+                    <div class="card-title text-center">Team</div>
+                    <div class="text-center fs-2 fw-bold"> {{ totalUniqueProjects }}
+                        
+                    </div>
+                    <div class="text-center fst-italic">Projects</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3" style="width: 25%">
+        <div class="card card3 shadow">
+            <div class="card-statistic-3">
+                <div class="card-icon card-icon-large">
+                    <i class="fa fa-globe"></i>
+                </div>
+                <div class="card-body fs-5 mt-3">
+                    <p class="card-title text-center">Today</p>
+                    <div class="row">
+                        <div class="col-lg-4 fs-2 fw-bold text-center">{{employeesWorkingFromHome.length}}</div>
+                        <div class="col-lg-4 fs-2 fw-bold text-center"> {{employeesWorkingFromOffice.length}}</div>
+                        <div class="col-lg-4 fs-2 fw-bold text-center">{{employeesLeave.length}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 fst-italic text-center">WFH</div>
+                        <div class="col-lg-4 fst-italic text-center">WFO</div>
+                        <div class="col-lg-4 fst-italic text-center">Leave</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3" style="width: 25%">
+        <div class="card card4 shadow">
+            <div class="card-statistic-3">
+                <div class="card-icon card-icon-large">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="card-body fs-5 mt-3">
+                    <p class="card-title text-center">Training</p>
+                    <div class="row">
+                        <div class="col-lg-6 fs-2 fw-bold text-center">{{trainingsToday}}</div>
+
+                        <div class="col-lg-6 fs-2 fw-bold text-center">{{ trainingsThisWeek}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 fst-italic text-center">Today</div>
+
+                        <div class="col-lg-6 fst-italic text-center">Week</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-5" style="margin-left: 10px">
+    <div class="col-lg-6">
+        <app-dashboard-barchart></app-dashboard-barchart>
+    </div>
+    <div class="col-lg-6">
+        <app-dashboard-piechart></app-dashboard-piechart>
+    </div>
+</div>

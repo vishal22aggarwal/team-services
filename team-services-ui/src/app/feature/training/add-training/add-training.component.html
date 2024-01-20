@@ -1,0 +1,166 @@
+<div class="flex-container">
+    <div class="col-lg-3 ms-4 mt-3 mb-3">
+        <span *ngIf="!this.data.id">Add Training</span>
+        <span *ngIf="this.data.id">Edit Training</span>
+    </div>
+    <div class="col-lg-8 mt-3 mb-3 text-end">
+        <button
+           
+        class="rounded-circle border-0 bg-danger  text-white" mat-dialog-close
+    >
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+    </div>
+</div>
+
+<form [formGroup]="dynamicForm" (ngSubmit)="onSave()">
+    <mat-form-field *ngIf="this.data.id"
+        appearance="outline"
+        
+    >
+        <mat-label>Nominate</mat-label>
+        <input matInput formControlName="Name" readonly />
+    </mat-form-field>
+    <mat-form-field
+        appearance="outline"
+    
+    >
+        <mat-label>TrainingTitle</mat-label>
+        <input matInput formControlName="TrainingTitle" />
+    </mat-form-field>
+
+    <mat-form-field
+        appearance="outline"
+
+    >
+        <mat-label>TrainingType</mat-label>
+        <mat-select formControlName="TrainingType">
+            <mat-option
+                *ngFor="let option of trainingType"
+                [value]="option.value"
+            >
+                {{ option.label }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+        appearance="outline"
+       
+    >
+        <mat-label>Mode</mat-label>
+        <mat-select formControlName="Mode">
+            <mat-option *ngFor="let option of mode" [value]="option.value">
+                {{ option.label }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="!this.data.id"
+    appearance="outline"
+   
+>
+    <mat-label>Nominate</mat-label>
+    <mat-select multiple formControlName="Name">
+        <mat-option
+            *ngFor="let employee of employees"
+            value="{{ employee.Name + '(' + employee.EmpId + ')' }}"
+        >
+            {{ employee.Name }}{{"(" + employee.EmpId + ")"}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+    <mat-form-field
+        appearance="outline"
+        style="width:215px"
+    >  <mat-label>PlannedDate</mat-label>
+        <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="PlannedDate"
+            formControlName="PlannedDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field
+        appearance="outline"
+        style="width:210px"
+    > <mat-label>StartDate</mat-label>
+        <input
+            matInput
+            [matDatepicker]="picker2"
+            placeholder="StartDate"
+            formControlName="StartDate"
+        />
+        <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field
+        appearance="outline"
+        style="width:215px"
+    > <mat-label>EndDate</mat-label>
+        <input
+            matInput
+            [matDatepicker]="picker3"
+            placeholder="EndDate"
+            formControlName="EndDate"
+        />
+        <mat-datepicker-toggle
+            matSuffix
+            [for]="picker3"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field
+        appearance="outline"
+      
+    >
+        <mat-label>Reference</mat-label>
+        <input matInput formControlName="Reference" />
+    </mat-form-field>
+
+   
+    
+
+    <mat-form-field
+        appearance="outline"
+      
+    >
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="Status">
+            <mat-option *ngFor="let option of status" [value]="option.value">
+                {{ option.label }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div mat-dialog-actions class="row">
+        <div class="col-lg-12 me-4 text-end">
+            <button
+                mat-raised-button
+                color="primary"
+                [ngClass]="{ 'disabled-button': dynamicForm.invalid }"
+                [disabled]="dynamicForm.invalid"
+                mat-dialog-close
+                (click)="onSave()"
+            >
+                Save
+            </button>
+
+            <button
+                mat-dialog-close
+                mat-raised-button
+                color="accent"
+                class="me-2"
+            >
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>
