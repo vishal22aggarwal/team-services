@@ -10,7 +10,8 @@ export class RestapiService {
     getEmployee(): Observable<any> {
         return this.http.get<any>(ApiEndpoints.EMPLOYEEDATA);
     }
-    saveEmployee(data: any) {
+    saveEmployee(data: any) { //comments added
+        
         console.log("empData", data);
         return this.http.post(ApiEndpoints.EMPLOYEEDATA, data);
     }
