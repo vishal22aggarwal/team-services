@@ -32,7 +32,7 @@ public class UserController {
 		return userService.getUsers();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id}") // comments in be
 	public User getUserById(@PathVariable int id) {
 		return userService.getUserById(id);
 	}
