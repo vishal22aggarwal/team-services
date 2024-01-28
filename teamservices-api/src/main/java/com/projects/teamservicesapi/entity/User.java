@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class User { // added comments
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
