@@ -1,5 +1,4 @@
 package com.projects.teamservicesapi.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,38 +11,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projects.teamservicesapi.entity.User;
-import com.projects.teamservicesapi.service.UserService;
+import com.projects.teamservicesapi.entity.Employee;
+
+import com.projects.teamservicesapi.service.EmployeeService;
+
 
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
-
+@RequestMapping("/api/employee")
+public class EmployeeController {
 	@Autowired
-	private UserService userService;
+	private EmployeeService employeeService;
 	
 	@PostMapping("/")
-	public User addUser(@RequestBody User user) {
-		return userService.saveUser(user);
+	public Employee addUser(@RequestBody Employee employee) {
+		return employeeService.saveEmployee(employee);
 	}
 	
 	@GetMapping
-	public List<User> getAllUsers() {
-		return userService.getUsers();
+	public List<Employee> getAllEmployee() {
+		return employeeService.getEmployee();
 	}
 	
 	@GetMapping("/{id}") 
-	public User getUserById(@PathVariable int id) {
-		return userService.getUserById(id);
+	public Employee getEmployeeById(@PathVariable int id) {
+		return employeeService.getEmployeeById(id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteUserById(@PathVariable int id) {
-		return userService.deleteUser(id);
+	public String deleteEmployeeById(@PathVariable int id) {
+		return employeeService.deleteEmployee(id);
 	}
 	
 	@PutMapping("/")
-	public User updateUser(@RequestBody User user) {
-		return userService.updateUser(user);
+	public Employee updateEmployee(@RequestBody Employee employee) {
+		return employeeService.updateEmployee(employee);
 	}
 }
