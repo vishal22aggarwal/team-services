@@ -12,38 +12,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projects.teamservicesapi.entity.Employee;
-import com.projects.teamservicesapi.service.EmployeeService;
+import com.projects.teamservicesapi.entity.Training;
+import com.projects.teamservicesapi.service.TrainingService;
 
 
 @RestController
-@RequestMapping("/api/employee")
-public class EmployeeController {
+@RequestMapping("/api/training")
+public class TrainingController {
 	@Autowired
-	private EmployeeService employeeService;
+	private TrainingService trainingService;
 	
 	@PostMapping("/")
-	public Employee addUser(@RequestBody Employee employee) {
-		return employeeService.saveEmployee(employee);
+	public Training addTraining(@RequestBody Training training) {
+		return trainingService.saveTraining(training);
 	}
 	
 	@GetMapping
-	public List<Employee> getAllEmployee() {
-		return employeeService.getEmployee();
+	public List<Training> getAllTraining() {
+		return trainingService.getTrainings();
 	}
 	
 	@GetMapping("/{id}") 
-	public Employee getEmployeeById(@PathVariable int id) {
-		return employeeService.getEmployeeById(id);
+	public Training geTrainingById(@PathVariable int id) {
+		return trainingService.getTrainingById(id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteEmployeeById(@PathVariable int id) {
-		return employeeService.deleteEmployee(id);
+	public String deleteTrainingById(@PathVariable int id) {
+		return trainingService.deleteTraining(id);
 	}
 	
 	@PutMapping("/")
-	public Employee updateEmployee(@RequestBody Employee employee) {
-		return employeeService.updateEmployee(employee);
+	public Training updateTraining(@RequestBody Training training) {
+		return trainingService.updateTraining(training);
 	}
 }
+
