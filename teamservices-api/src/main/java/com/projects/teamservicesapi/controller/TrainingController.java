@@ -1,9 +1,8 @@
 package com.projects.teamservicesapi.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,38 +12,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projects.teamservicesapi.entity.User;
-import com.projects.teamservicesapi.service.UserService;
+import com.projects.teamservicesapi.entity.Training;
+import com.projects.teamservicesapi.service.TrainingService;
+
 
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
-
+@RequestMapping("/api/training")
+public class TrainingController {
 	@Autowired
-	private UserService userService;
+	private TrainingService trainingService;
 	
 	@PostMapping("/")
-	public User addUser(@RequestBody User user) {
-		return userService.saveUser(user);
+	public Training addTraining(@RequestBody Training training) {
+		return trainingService.saveTraining(training);
 	}
-	@CrossOrigin(origins = "http://localhost:4200/")
+	
 	@GetMapping
-	public List<User> getAllUsers() {
-		return userService.getUsers();
+	public List<Training> getAllTraining() {
+		return trainingService.getTrainings();
 	}
 	
 	@GetMapping("/{id}") 
-	public User getUserById(@PathVariable int id) {
-		return userService.getUserById(id);
+	public Training geTrainingById(@PathVariable int id) {
+		return trainingService.getTrainingById(id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteUserById(@PathVariable int id) {
-		return userService.deleteUser(id);
+	public String deleteTrainingById(@PathVariable int id) {
+		return trainingService.deleteTraining(id);
 	}
 	
 	@PutMapping("/")
-	public User updateUser(@RequestBody User user) {
-		return userService.updateUser(user);
+	public Training updateTraining(@RequestBody Training training) {
+		return trainingService.updateTraining(training);
 	}
 }
+
