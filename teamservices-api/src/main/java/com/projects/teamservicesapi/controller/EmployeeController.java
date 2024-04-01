@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.projects.teamservicesapi.entity.Employee;
 import com.projects.teamservicesapi.service.EmployeeService;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/employeesData")
 public class EmployeeController {
@@ -42,7 +42,7 @@ public class EmployeeController {
 		return employeeService.deleteEmployee(id);
 	}
 	
-	@PutMapping("/")
+	@PutMapping("/{id}")
 	public Employee updateEmployee(@RequestBody Employee employee) {
 		return employeeService.updateEmployee(employee);
 	}

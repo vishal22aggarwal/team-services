@@ -20,7 +20,7 @@ public class Employee {
 
 private int id;
 @JsonProperty("EmpId")
-private int empId;
+private String empId;
 
 @JsonProperty("Name")
 private String name;
@@ -51,10 +51,10 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public int getEmpId() {
+public String getEmpId() {
 	return empId;
 }
-public void setEmpId(int empId) {
+public void setEmpId(String empId) {
 	this.empId = empId;
 }
 public String getName() {

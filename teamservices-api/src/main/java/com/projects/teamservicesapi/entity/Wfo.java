@@ -7,12 +7,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="wfo")
 public class Wfo {
 
 @Id
@@ -23,7 +25,7 @@ private String month;
 @JsonProperty("Name")
 private String name;
 @JsonProperty("TO")
-private int to;
+private int toffice;
 @JsonProperty("TH")
 private int th;
 @JsonProperty("TL")
@@ -55,11 +57,11 @@ public void setName(String name) {
 }
 
 public int getTO() {
-    return to;
+    return toffice;
 }
 
-public void setTO(int to) {
-    this.to = to;
+public void setTO(int toffice) {
+    this.toffice = toffice;
 }
 
 public int getTH() {
