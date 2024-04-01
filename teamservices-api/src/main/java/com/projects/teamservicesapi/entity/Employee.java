@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Employee {
+
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 
@@ -41,6 +42,8 @@ private String location;
 
 @JsonProperty("ContactNo")
 private String contactNo;
+@JsonProperty("Icons")
+private String icons;
 
 public int getId() {
 	return id;
@@ -95,5 +98,12 @@ public String getContactNo() {
 }
 public void setContactNo(String contactNo) {
 	this.contactNo=contactNo;
+
+}
+public String getIcons() {
+	return icons;
+}
+public void setIcons(String icons) {
+	this.icons = icons;
 }
 }

@@ -12,39 +12,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projects.teamservicesapi.entity.Training;
-import com.projects.teamservicesapi.service.TrainingService;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+import com.projects.teamservicesapi.entity.Wfo;
+
+import com.projects.teamservicesapi.service.WfoService;
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/training")
-public class TrainingController {
+@RequestMapping("/api/wfo")
+public class WfoController {
 	@Autowired
-	private TrainingService trainingService;
+	private WfoService wfoService;
 	
 	@PostMapping
-	public Training addTraining(@RequestBody Training training) {
-		return trainingService.saveTraining(training);
+	public Wfo addWfo(@RequestBody Wfo wfo) {
+		return wfoService.saveWfo(wfo);
 	}
 	
 	@GetMapping
-	public List<Training> getAllTraining() {
-		return trainingService.getTrainings();
+	public List<Wfo> getAllWfo() {
+		return wfoService.getWfo();
 	}
 	
 	@GetMapping("/{id}") 
-	public Training geTrainingById(@PathVariable int id) {
-		return trainingService.getTrainingById(id);
+	public Wfo getWfoById(@PathVariable int id) {
+		return wfoService.getWfoById(id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteTrainingById(@PathVariable int id) {
-		return trainingService.deleteTraining(id);
+	public String deleteWfoById(@PathVariable int id) {
+		return wfoService.deleteWfo(id);
 	}
 	
 	@PutMapping("/")
-	public Training updateTraining(@RequestBody Training training) {
-		return trainingService.updateTraining(training);
+	public Wfo updateWfo(@RequestBody Wfo wfo) {
+		return wfoService.updateWfo(wfo);
 	}
 }
-
