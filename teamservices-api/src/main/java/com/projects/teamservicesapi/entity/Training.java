@@ -1,6 +1,7 @@
 package com.projects.teamservicesapi.entity;
 
 import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,14 +17,23 @@ public class Training {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@JsonProperty("TrainingTitle")
 	private String trainingTitle;
+	@JsonProperty("TrainingType")
     private String trainingType;
+	@JsonProperty("PlannedDate")
     private String plannedDate;
+	@JsonProperty("StartDate")
     private String startDate;
+	@JsonProperty("Name")
     private String name;
+	@JsonProperty("EndDate")
     private String endDate;
+	@JsonProperty("Status")
     private String status;
+	@JsonProperty("Reference")
     private String reference;
+	@JsonProperty("Mode")
     private String mode;
 	public int getId() {
 		return id;

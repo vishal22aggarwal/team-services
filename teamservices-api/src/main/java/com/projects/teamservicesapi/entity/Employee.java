@@ -1,10 +1,11 @@
 package com.projects.teamservicesapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -13,27 +14,47 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Employee {
+
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
+
 private int id;
-private int empId;
+@JsonProperty("EmpId")
+private String empId;
+
+@JsonProperty("Name")
 private String name;
+
+@JsonProperty("Grade")
 private String grade;
+
+@JsonProperty("Designation")
 private String designation;
+
+@JsonProperty("Project")
 private String project;
+
+@JsonProperty("Skills")
 private String skills;
+
+@JsonProperty("Location")
 private String location;
-private int contactNo;
+
+@JsonProperty("ContactNo")
+private String contactNo;
+@JsonProperty("Icons")
+private String icons;
+
 public int getId() {
 	return id;
 }
 public void setId(int id) {
 	this.id = id;
 }
-public int getEmpId() {
+public String getEmpId() {
 	return empId;
 }
-public void setEmpId(int empId) {
+public void setEmpId(String empId) {
 	this.empId = empId;
 }
 public String getName() {
@@ -72,10 +93,17 @@ public String getLocation() {
 public void setLocation(String location) {
 	this.location=location;
 }
-public int getContactNo() {
+public String getContactNo() {
 	return contactNo;
 }
-public void setContactNo(int contactNo) {
+public void setContactNo(String contactNo) {
 	this.contactNo=contactNo;
+
+}
+public String getIcons() {
+	return icons;
+}
+public void setIcons(String icons) {
+	this.icons = icons;
 }
 }

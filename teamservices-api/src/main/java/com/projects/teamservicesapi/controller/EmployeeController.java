@@ -2,7 +2,7 @@ package com.projects.teamservicesapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.projects.teamservicesapi.entity.Employee;
 import com.projects.teamservicesapi.service.EmployeeService;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/api/employeesData")
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@PostMapping("/")
+	@PostMapping
 	public Employee addUser(@RequestBody Employee employee) {
 		return employeeService.saveEmployee(employee);
 	}
@@ -42,7 +42,7 @@ public class EmployeeController {
 		return employeeService.deleteEmployee(id);
 	}
 	
-	@PutMapping("/")
+	@PutMapping("/{id}")
 	public Employee updateEmployee(@RequestBody Employee employee) {
 		return employeeService.updateEmployee(employee);
 	}

@@ -1,5 +1,4 @@
 package com.projects.teamservicesapi.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,39 +12,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projects.teamservicesapi.entity.User;
-import com.projects.teamservicesapi.service.UserService;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+import com.projects.teamservicesapi.entity.Wfo;
+
+import com.projects.teamservicesapi.service.WfoService;
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
-
+@RequestMapping("/api/wfo")
+public class WfoController {
 	@Autowired
-	private UserService userService;
+	private WfoService wfoService;
 	
 	@PostMapping
-	public User addUser(@RequestBody User user) {
-		return userService.saveUser(user);
+	public Wfo addWfo(@RequestBody Wfo wfo) {
+		return wfoService.saveWfo(wfo);
 	}
 	
 	@GetMapping
-	public List<User> getAllUsers() {
-		return userService.getUsers();
+	public List<Wfo> getAllWfo() {
+		return wfoService.getWfo();
 	}
 	
 	@GetMapping("/{id}") 
-	public User getUserById(@PathVariable int id) {
-		return userService.getUserById(id);
+	public Wfo getWfoById(@PathVariable int id) {
+		return wfoService.getWfoById(id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteUserById(@PathVariable int id) {
-		return userService.deleteUser(id);
+	public String deleteWfoById(@PathVariable int id) {
+		return wfoService.deleteWfo(id);
 	}
 	
 	@PutMapping("/")
-	public User updateUser(@RequestBody User user) {
-		return userService.updateUser(user);
+	public Wfo updateWfo(@RequestBody Wfo wfo) {
+		return wfoService.updateWfo(wfo);
 	}
 }

@@ -1,5 +1,7 @@
 package com.projects.teamservicesapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,10 +18,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int empId;
+	@JsonProperty("EmpId")
+	private String empId;
     private String email;
     private String password;
     private String role;
+	@JsonProperty("Name")
     private String name;
 	public int getId() {
 		return id;
@@ -27,10 +31,10 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getEmpId() {
+	public String getEmpId() {
 		return empId;
 	}
-	public void setEmpId(int empId) {
+	public void setEmpId(String empId) {
 		this.empId = empId;
 	}
 	public String getEmail() {
