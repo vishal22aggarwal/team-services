@@ -1,71 +1,46 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = "your-docker-repo/your-angular-app:${env.BUILD_NUMBER}"
-        KUBE_CONTEXT = "your-kube-context"
-        KUBE_NAMESPACE = "your-kube-namespace"
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from Git
-                git url: 'https://github.com/your-repo/your-angular-project.git', branch: 'main'
+                echo 'Checking out source code'
             }
         }
-
-        stage('Install Dependencies') {
+        stage('Build') {
             steps {
-                // Install npm dependencies
-                sh 'npm install'
+                echo 'Building the application'
             }
         }
-
-        stage('Build Angular App') {
+        stage('Test') {
             steps {
-                // Build the Angular application
-                sh 'npm run build --prod'
+                echo 'Running tests'
             }
         }
-
-        stage('Docker Build & Push') {
+        stage('Deploy') {
             steps {
-                // Build the Docker image
-                sh """
-                docker build -t ${DOCKER_IMAGE} .
-                docker push ${DOCKER_IMAGE}
-                """
+                echo 'Deploying the application'
             }
         }
-
-        stage('Deploy to Kubernetes') {
+        stage('Post-Build') {
             steps {
-                script {
-                    // Use kubectl to deploy the application
-                    sh """
-                    kubectl --context=${KUBE_CONTEXT} --namespace=${KUBE_NAMESPACE} apply -f k8s/deployment.yaml
-                    kubectl --context=${KUBE_CONTEXT} --namespace=${KUBE_NAMESPACE} set image deployment/your-angular-deployment your-angular-container=${DOCKER_IMAGE}
-                    """
-                }
+                echo 'Post-build actions'
             }
         }
     }
 
     post {
         always {
-            // Clean up workspace
-            cleanWs()
+            echo 'This will always run after all stages, regardless of success or failure'
         }
-
         success {
-            // Notify success (e.g., send a message to Slack)
-            echo 'Deployment succeeded!'
+            echo 'This will run only if the pipeline succeeds'
         }
-
         failure {
-            // Notify failure (e.g., send a message to Slack)
-            echo 'Deployment failed!'
+            echo 'This will run only if the pipeline fails'
+        }
+        unstable {
+            echo 'This will run only if the pipeline is marked as unstable'
         }
     }
 }
