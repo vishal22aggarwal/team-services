@@ -1,16 +1,31 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'my-nodejs'  // Replace with your Node.js name
+    }
+
     stages {
+        
         stage('Checkout') {
             steps {
                 sh "ls -l"
                 echo 'Checking out source code'
             }
         }
+        stage('Install Dependencies') {
+            steps {
+                echo 'Building the application'
+                sh 'cd team-services-ui'
+                sh 'ls -l'
+                sh 'npm install'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building the application'
+                sh 'npm run build --prod'
+                sh "ls -l"
             }
         }
         stage('Test') {
