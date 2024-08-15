@@ -16,16 +16,21 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Building the application'
-                sh 'cd team-services-ui'
-                sh 'ls -l'
-                sh 'npm install'
+                sh '''
+                    cd team-services-ui
+                    ls -l
+                    npm install --legacy-peer-deps
+                '''
             }
         }
         stage('Build') {
             steps {
                 echo 'Building the application'
-                sh 'npm run build --prod'
-                sh "ls -l"
+                sh '''
+                    cd team-services-ui
+                    npm run build --prod
+                   ''' 
+                
             }
         }
         stage('Test') {
