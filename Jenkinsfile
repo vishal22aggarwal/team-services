@@ -38,6 +38,15 @@ pipeline {
                 echo 'Running tests'
             }
         }
+        stage('FE Image') {
+            steps {
+                echo 'Creating image'
+                sh '''
+                    cd team-services-ui
+                    docker build -t team-service-ui:1.0.0 .
+                   '''
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying the application'
