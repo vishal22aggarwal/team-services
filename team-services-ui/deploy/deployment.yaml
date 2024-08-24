@@ -29,6 +29,8 @@ spec:
     app: team-service-ui
   ports:
     - protocol: TCP
-      port: 4200
-      targetPort: 80
-  type: LoadBalancer
+      port: 4200       # Port exposed by the service
+      targetPort: 80   # Port on the container
+      nodePort: 30010  # Or any available port between 30000 and 32767
+  type: NodePort
+
