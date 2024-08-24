@@ -57,7 +57,6 @@ pipeline {
                     sh '''
                         cd team-services-ui/deploy
                         kubectl apply -f deployment.yaml
-                        kubectl port-forward service/team-service-ui-service 4200:80
                     '''
                 }
             }
