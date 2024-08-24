@@ -50,9 +50,15 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        stage('Deploy to Kubernetes') {
             steps {
-                echo 'Deploying the application'
+                // Use withCredentials to set KUBECONFIG to the actual file path
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                    sh '''
+                        cd team-services-ui/deploy
+                        kubectl apply -f deployment.yaml
+                    '''
+                }
             }
         }
         stage('Post-Build') {

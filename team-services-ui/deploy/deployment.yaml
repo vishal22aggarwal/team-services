@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: team-service-ui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: team-service-ui
+  template:
+    metadata:
+      labels:
+        app: team-service-ui
+    spec:
+      containers:
+      - name: team-service-ui
+        image: vishkumar/team-service-ui:1.0.0
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: my-k8t-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: team-service-ui-service
+spec:
+  selector:
+    app: team-service-ui
+  ports:
+    - protocol: TCP
+      port: 4200
+      targetPort: 8080
+  type: LoadBalancer
