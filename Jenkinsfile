@@ -43,10 +43,13 @@ pipeline {
                 echo 'Creating image'
                 sh '''
                     cd team-services-ui
-                    docker build -t team-service-ui:1.0.0 .
+                    docker build -t vishkumar/team-service-ui:1.0.0 .
+                    docker login -u vishkumar -p Work@2211
+                    docker push vishkumar/team-service-ui:1.0.0
                    '''
             }
         }
+        
         stage('Deploy') {
             steps {
                 echo 'Deploying the application'
