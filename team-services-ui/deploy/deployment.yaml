@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: team-service-ui
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: team-service-ui
@@ -16,7 +16,7 @@ spec:
       - name: team-service-ui
         image: vishkumar/team-service-ui:1.0.0
         ports:
-        - containerPort: 8080
+        - containerPort: 80
       imagePullSecrets:
       - name: my-k8t-secret
 ---
@@ -30,5 +30,5 @@ spec:
   ports:
     - protocol: TCP
       port: 4200
-      targetPort: 8080
+      targetPort: 80
   type: LoadBalancer
